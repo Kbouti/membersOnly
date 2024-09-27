@@ -14,15 +14,13 @@ const port = process.env.PORT;
 
 app.use(express.static("public"));
 
-// const path = require("path")
-// app.set("views", path.join(__dirname, "views"));
-
 app.set("views", __dirname);
-app.set("view engine", "ejs");
+app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
   res.render("./views/pages/home", {title: "Bingo"});
 });
+
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}.`);
