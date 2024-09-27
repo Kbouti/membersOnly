@@ -1,0 +1,19 @@
+form(action="/new", method="post") 
+    h2 New User
+    .formComponent
+        label(for="firstName") First Name:
+        input(type="text" name="firstName")
+    .formComponent
+        label(for="lastName") Last Name:
+        input(type="text" name="lastName")
+    .formComponent
+        label(for="email") Email:
+        input(type="email" name="email")
+    .formComponent
+        label(for="password") Password:
+        input(type="text" name="password")
+    .formComponent
+        label(for="confirmPassword") Confirm Password:
+        input(type="text" name="confirmPassword")
+    .formComponent 
+        button(type="submit") Submit
