@@ -6,21 +6,18 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
+const indexRouter = require("./routers/indexRouter.js")
 require("dotenv").config();
+
 
 const app = express();
 const port = process.env.PORT;
 
 app.use(express.static("public"));
-
 app.set("views", __dirname);
 app.set("view engine", "pug");
 
-app.get("/", (req, res) => {
-  res.render("./views/pages/home", {title: "Bingo"});
-});
-
+app.use("/", indexRouter);
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}.`);
