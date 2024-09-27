@@ -1,8 +1,21 @@
-exports.indexGet = async (req, res) => {
-  console.log(`indexGet controller function called`);
+exports.getIndex = async (req, res) => {
+  console.log(`getIndex controller function called`);
 
   res.render("./views/pages/home", {
-    title: "Home"
+    title: "Home",
     // Here go any parameters we want to pass to the view
   });
 };
+
+exports.postNewUser = async (req, res) => {
+  console.log(`postNewUser controller function called`);
+
+  console.log(`req.body.firstName: ${req.body.firstName}`);
+
+// Sooooo is it time to validate and sanitize?? probably...
+
+  res.render("./views/pages/home", {
+    title: "Home",
+  });
+};
+
