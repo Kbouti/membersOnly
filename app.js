@@ -9,7 +9,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const indexRouter = require("./routers/indexRouter.js")
 require("dotenv").config();
 
-
 const app = express();
 const port = process.env.PORT;
 
