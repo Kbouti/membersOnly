@@ -10,5 +10,25 @@ const LocalStrategy = require("passport-local").Strategy;
 require("dotenv").config();
 
 const app = express();
+const port = process.env.PORT;
+
+app.use(express.static("public"));
+
+// const path = require("path")
+// app.set("views", path.join(__dirname, "views"));
+
 app.set("views", __dirname);
-app.set("view engine", "jade")
+app.set("view engine", "ejs");
+
+app.get("/", (req, res) => {
+  res.render("./views/pages/home", {title: "Bingo"});
+});
+
+app.listen(port, () => {
+  console.log(`App is listening on port ${port}.`);
+  console.log(`.`);
+  console.log(`.`);
+  console.log(`.`);
+  console.log(`.`);
+  console.log(`MAY THE FORCE BE WITH YOU`);
+});
