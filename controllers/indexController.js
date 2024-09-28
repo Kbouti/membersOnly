@@ -40,11 +40,21 @@ exports.getIndex = async (req, res) => {
   });
 };
 
-exports.postNewUser = async (req, res) => {
+exports.postNewUser = [validateUser, async (req, res) => {
   console.log(`postNewUser controller function called`);
 
   console.log(`req.body.firstName: ${req.body.firstName}`);
-  await userQueries.createUser(
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render("./views/pages/home", {
+        title: "Home",
+        errors: errors.array()
+    })
+  }
+
+    await userQueries.createUser(
     req.body.firstName,
     req.body.lastName,
     req.body.email,
@@ -55,4 +65,4 @@ exports.postNewUser = async (req, res) => {
   // Sooooo is it time to validate and sanitize?? probably...
 
   res.redirect("/");
-};
+}];
