@@ -6,4 +6,10 @@ html
         h1=title
         include ../components/header
         include ../components/signUp
-        
+        if users 
+            ul
+                for user in users
+                    li #{user.first_name} #{user.last_name}, Member: #{user.is_member} Admin: #{user.is_admin} 
+                        
+
+                        
