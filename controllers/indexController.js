@@ -22,12 +22,27 @@ const validateUser = [
     .isLength({ min: 1, max: 10 })
     .withMessage(`Last name ${lengthErr}`),
   body("email").isEmail().withMessage(invalidEmail),
-
-
-// Next up we'll need to make sure passwords match, then perform password encryption
-
-
+  body("password").trim(),
+  body("confirmPassword")
+    .trim()
+    .custom((confirmPassword, { req }) => {
+      console.log(`confirmPassword: ${confirmPassword}`);
+      console.log(`req.body.password: ${req.body.password}`);
+      if (confirmPassword != req.body.password) {
+        console.log(`passwords do not match`);
+        return Promise.reject(passwordNoMatch);
+      }
+      console.log(`passwords do match`);
+      return true;
+    }),
 ];
+
+// **********************************************************************
+
+// Next up:
+// Password encryption
+
+// **********************************************************************
 
 exports.getIndex = async (req, res) => {
   console.log(`getIndex controller function called`);
