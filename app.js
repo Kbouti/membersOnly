@@ -8,6 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const indexRouter = require("./routers/indexRouter.js")
 require("dotenv").config();
+const { body, validationResult } = require("express-validator");
 
 
 
