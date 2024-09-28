@@ -2,13 +2,22 @@ form(action="/newUser", method="post")
     h2 New User
     .formComponent
         label(for="firstName") First Name:
-        input(type="text" name="firstName")
+        if submission 
+            input(type="text" name="firstName" value=`${submission.firstName}`)
+        else
+            input(type="text" name="firstName") 
     .formComponent
         label(for="lastName") Last Name:
-        input(type="text" name="lastName")
+        if submission 
+            input(type="text" name="lastName" value=`${submission.lastName}`)
+        else
+            input(type="text" name="lastName") 
     .formComponent
         label(for="email") Email:
-        input(type="email" name="email")
+        if submission 
+            input(type="text" name="email" value=`${submission.email}`)
+        else
+            input(type="text" name="email") 
     .formComponent
         label(for="password") Password:
         input(type="text" name="password")
