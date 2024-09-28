@@ -6,10 +6,6 @@ exports.getIndex = async (req, res) => {
   const users = await userQueries.fetchUsers();
   console.log(`fetched users from query function`);
   console.log(`users.length: ${users.length}`);
-
-  // **********************************************************************
-  // Next up let's render each user info in our home view to see if it's working
-  // **********************************************************************
   users.forEach((user) => {
     console.log(`user.first_name: ${user.first_name}`);
   });
@@ -17,7 +13,6 @@ exports.getIndex = async (req, res) => {
   res.render("./views/pages/home", {
     title: "Home",
     users,
-    // Here go any parameters we want to pass to the view
   });
 };
 
@@ -25,10 +20,15 @@ exports.postNewUser = async (req, res) => {
   console.log(`postNewUser controller function called`);
 
   console.log(`req.body.firstName: ${req.body.firstName}`);
-
+  await userQueries.createUser(
+    req.body.firstName,
+    req.body.lastName,
+    req.body.email,
+    req.body.password,
+    true,
+    false
+  );
   // Sooooo is it time to validate and sanitize?? probably...
 
-  res.render("./views/pages/home", {
-    title: "Home",
-  });
+  res.redirect("/");
 };
