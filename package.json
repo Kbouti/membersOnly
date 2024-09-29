@@ -12,6 +12,10 @@
     "pug": "^3.0.3"
   },
   "scripts": {
-    "start": "node --watch app.js"
+    "start": "node --watch app.js",
+    "dropTables": "node database/dropTables",
+    "populate": "node database/populate",
+    "reset": "node database/dropTables && node database/populate && npm run start"
+    
   }
 }
