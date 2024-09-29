@@ -21,7 +21,15 @@ const validateUser = [
     .withMessage(`Last name ${alphaErr}`)
     .isLength({ min: 1, max: 10 })
     .withMessage(`Last name ${lengthErr}`),
-  body("email").isEmail().withMessage(invalidEmail),
+  body("email")
+    .isEmail()
+    .withMessage(invalidEmail)
+    .custom(async (email) => {
+      const existingUsers = await userQueries.getUserByEmail(email);
+      if (existingUsers.length > 0) {
+        return Promise.reject(`Email already in use`);
+      }
+    }),
   body("password").trim(),
   body("confirmPassword")
     .trim()
@@ -41,6 +49,7 @@ const validateUser = [
 
 // Next up:
 // Password encryption
+// Make password required
 
 // **********************************************************************
 

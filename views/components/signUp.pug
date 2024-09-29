@@ -1,4 +1,4 @@
-form(action="/newUser", method="post") 
+form(action="/newUser", method="post" autocomplete="off") 
     h2 New User
     .formComponent
         label(for="firstName") First Name:
@@ -20,7 +20,7 @@ form(action="/newUser", method="post")
             input(type="text" name="email") 
     .formComponent
         label(for="password") Password:
-        input(type="text" name="password")
+        input(type="text" name="password" required)
     .formComponent
         label(for="confirmPassword") Confirm Password:
         input(type="text" name="confirmPassword")

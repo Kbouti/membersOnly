@@ -14,3 +14,10 @@ exports.createUser = async (first_name, last_name, email, password, is_member, i
     const response = await pool.query(sql);
     return response;
 }
+
+exports.getUserByEmail = async (email) => {
+    console.log(`userQuery getUserByEmail called, email: ${email}`);
+    const {rows} = await pool.query(`select * from users where email = '${email}';`);
+    // console.log(`fetched response. rows.length: ${rows.length}`);
+    return rows;
+}
