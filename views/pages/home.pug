@@ -6,6 +6,8 @@ html
         h1=title
         include ../components/header
         include ../components/errors
+        if locals.user 
+            div welcome back! #{user.firstName}
         include ../components/signUp
         include ../components/logIn
 

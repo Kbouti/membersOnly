@@ -6,7 +6,15 @@ indexRouter.get("/", indexController.getIndex);
 
 indexRouter.post("/newUser", indexController.postNewUser)
 
+// indexRouter.post(
+//     "/logIn",
+//     passport.authenticate("local", {
+//       successRedirect: "/",
+//       failureRedirect: "/"
+//     })
+//   );
 
 module.exports = indexRouter;
 
 
+// kevin.f.boutilier@gmail.com

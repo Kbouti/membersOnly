@@ -57,6 +57,7 @@ exports.getIndex = async (req, res) => {
   const users = await userQueries.fetchUsers();
   res.render("./views/pages/home", {
     title: "Home",
+    user: req.user,
     users,
   });
 };
