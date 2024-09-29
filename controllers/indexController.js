@@ -50,9 +50,6 @@ const validateUser = [
 // Password encryption
 // make password required in sql
 
-// ** login code functionality
-// When users login they enter a code. If they have the correct code, they will receive membership status. If They have the admin code - they get membership and admin status
-
 // **********************************************************************
 
 exports.getIndex = async (req, res) => {
