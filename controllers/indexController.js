@@ -5,7 +5,6 @@ const { body, validationResult } = require("express-validator");
 const alphaErr = "must only contain letters.";
 const lengthErr = "must be between 1 and 10 characters.";
 const invalidEmail = "Email must be valid.";
-
 const passwordNoMatch = "Passwords must match";
 
 const validateUser = [
@@ -49,18 +48,16 @@ const validateUser = [
 
 // Next up:
 // Password encryption
-// Make password required
+// make password required in sql
+
+// ** login code functionality
+// When users login they enter a code. If they have the correct code, they will receive membership status. If They have the admin code - they get membership and admin status
 
 // **********************************************************************
 
 exports.getIndex = async (req, res) => {
   console.log(`getIndex controller function called`);
   const users = await userQueries.fetchUsers();
-  console.log(`fetched users from query function`);
-  console.log(`users.length: ${users.length}`);
-  users.forEach((user) => {
-    console.log(`user.first_name: ${user.first_name}`);
-  });
   res.render("./views/pages/home", {
     title: "Home",
     users,
@@ -90,9 +87,8 @@ exports.postNewUser = [
         req.body.firstName,
         req.body.lastName,
         req.body.email,
+        req.body.loginCode,
         req.body.password,
-        true,
-        false
       );
       res.redirect("/");
     }

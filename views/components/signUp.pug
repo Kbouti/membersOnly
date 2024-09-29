@@ -19,6 +19,9 @@ form(action="/newUser", method="post" autocomplete="off")
         else
             input(type="text" name="email") 
     .formComponent
+        label(for="loginCode") Login Code:
+        input(type="text" name="loginCode")
+    .formComponent
         label(for="password") Password:
         input(type="text" name="password" required)
     .formComponent
