@@ -16,6 +16,5 @@
     "dropTables": "node database/dropTables",
     "populate": "node database/populate",
     "reset": "node database/dropTables && node database/populate && npm run start"
-    
   }
 }
