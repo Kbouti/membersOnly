@@ -8,6 +8,8 @@ html
         include ../components/errors
         if locals.user 
             div welcome back! #{user.firstName}
+            button 
+                a(href="/logOut") Log Out 
         else
             include ../components/signUp
             include ../components/logIn
