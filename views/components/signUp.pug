@@ -1,0 +1,31 @@
+form(action="/newUser", method="post" autocomplete="off") 
+    h2 New User
+    .formComponent
+        label(for="firstName") First Name:
+        if submission 
+            input(type="text" name="firstName" value=`${submission.firstName}`)
+        else
+            input(type="text" name="firstName") 
+    .formComponent
+        label(for="lastName") Last Name:
+        if submission 
+            input(type="text" name="lastName" value=`${submission.lastName}`)
+        else
+            input(type="text" name="lastName") 
+    .formComponent
+        label(for="email") Email:
+        if submission 
+            input(type="text" name="email" value=`${submission.email}`)
+        else
+            input(type="text" name="email") 
+    .formComponent
+        label(for="loginCode") Login Code:
+        input(type="text" name="loginCode")
+    .formComponent
+        label(for="password") Password:
+        input(type="text" name="password" required)
+    .formComponent
+        label(for="confirmPassword") Confirm Password:
+        input(type="text" name="confirmPassword")
+    .formComponent 
+        button(type="submit") Submit

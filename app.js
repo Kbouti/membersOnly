@@ -12,8 +12,12 @@ const indexRouter = require("./routers/indexRouter");
 const pool = require("./database/pool");
 
 const app = express();
+
+
+
+app.use(express.static("public"));
 app.set("views", __dirname);
-app.set("view engine", "ejs");
+app.set("view engine", "pug");
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
