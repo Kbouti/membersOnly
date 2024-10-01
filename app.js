@@ -1,7 +1,7 @@
 // installed dependencies:
 // npm install express express-session pg passport passport-local pug dotenv
 
-const { Pool } = require("pg");
+// const { Pool } = require("pg");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
@@ -19,16 +19,15 @@ app.use(express.static("public"));
 app.set("views", __dirname);
 app.set("view engine", "pug");
 
-
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.listen(process.env.PORT, () => {
-    console.log(`App is listening on port ${process.env.PORT}.`);
-  });
+  console.log(`App is listening on port ${process.env.PORT}.`);
+});
 
-  // ******************************************************************************************************************************
+// ******************************************************************************************************************************
 // The below function never gets called. Why not??
 passport.use(
   new LocalStrategy(async (email, password, done) => {
@@ -41,11 +40,14 @@ passport.use(
       const user = rows[0];
 
       if (!user) {
+        console.log(`username does not exist`);
         return done(null, false, { message: "Incorrect email" });
       }
       if (user.password !== password) {
+        console.log(`incorrect password`);
         return done(null, false, { message: "Incorrect password" });
       }
+      console.log(`successfull login`);
       return done(null, user);
     } catch (err) {
       return done(err);
@@ -63,32 +65,47 @@ passport.deserializeUser(async (id, done) => {
       id,
     ]);
     const user = rows[0];
-
     done(null, user);
   } catch (err) {
     done(err);
   }
 });
 
-// // Syntax from the lesson, does not reach the desired passport local strategy function
-// app.post("/logIn",
-//     passport.authenticate("local", {
-//         successRedirect: "/",
-//         failureRedirect: "/",
-//       })
-// );
-
-app.post("/logIn", async (req, res) => {
-  console.log(`app post reached`);
-  console.log(`req.body: ${JSON.stringify(req.body)}`);
-  //  Why isn't the next function getting called? Or, what is going wrong? 
+// // Syntax from the lesson, does not reach the desired passport local strategy function but it loads and stops. I suspect it only isn't working because of pug
+app.post(
+  "/logIn",
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/",
   })
-//   Unless I redirect it will just keep thinking
-  res.redirect("/");
-});
+);
+
+// Cake's way (resulted in headers sent error)
+// app.post("/logIn", async (req, res, next) => {
+//   const middleware = passport.authenticate("local", {
+//     successRedirect: "/",
+//     failureRedirect: "/",
+//   });
+
+//   middleware(req, res, next);
+//   res.redirect("/");
+// });
+
+// My attempt to chain some console.log statements. This does not stop loading. Different result from above, it leaves some promise unfulfilled
+// app.post(
+//   "/logIn",
+//   function () {
+//     console.log(`first function`);
+//   },
+//   passport.authenticate("local", {
+//     successRedirect: "/",
+//     failureRedirect: "/",
+//   }),
+//   async (req, res) => {
+//     console.log(`third function`);
+//   }
+// );
+
 
 
 app.get("/", async (req, res) => {
