@@ -4,17 +4,11 @@ const indexController = require("../controllers/indexController");
 
 indexRouter.get("/", indexController.getIndex);
 
-indexRouter.post("/newUser", indexController.postNewUser)
+indexRouter.post("/newUser", indexController.postNewUser);
 
-// indexRouter.post(
-//     "/logIn",
-//     passport.authenticate("local", {
-//       successRedirect: "/",
-//       failureRedirect: "/"
-//     })
-//   );
+indexRouter.post("/logIn", indexController.postLogin);
+
+indexRouter.get("/logOut", indexController.getLogout);
 
 module.exports = indexRouter;
 
-
-// kevin.f.boutilier@gmail.com

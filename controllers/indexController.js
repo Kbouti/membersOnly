@@ -44,23 +44,37 @@ const validateUser = [
     }),
 ];
 
-// **********************************************************************
-
-// Next up:
-// Password encryption
-// make password required in sql
-
-// **********************************************************************
 
 exports.getIndex = async (req, res) => {
   console.log(`getIndex controller function called`);
   const users = await userQueries.fetchUsers();
-  res.render("./views/pages/home", {
+  res.render("./views/pages/index", {
     title: "Home",
     user: req.user,
     users,
   });
 };
+
+const passport = require("passport");
+
+exports.postLogin = async (req, res, next) => {
+    const middleware = passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/"
+      });
+      middleware(req, res);
+    next
+}
+
+exports.getLogout = async (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/");
+      });
+}
+
 
 exports.postNewUser = [
   validateUser,

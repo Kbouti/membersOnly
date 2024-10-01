@@ -8,6 +8,7 @@ const LocalStrategy = require("passport-local").Strategy;
 
 // require("dotenv").config();
 
+const indexRouter = require("./routers/indexRouter");
 const pool = require("./database/pool");
 
 const app = express();
@@ -18,29 +19,10 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  console.log(`app get / route reached`);
-  res.render("views/pages/index", { title: "Home", user: req.user });
-});
 
 app.listen(3000, () => console.log("app listening on port 3000!"));
 
-app.post(
-  "/logIn",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
-  })
-);
-
-app.get("/log-out", (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
-});
+app.use("/", indexRouter);
 
 // ******************************************************************************************
 passport.use(
