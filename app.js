@@ -23,6 +23,14 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+    console.log(`req.session: ${req.session}`);
+    console.log(`JSON.stringify(req.session): ${JSON.stringify(req.session)}`);
+    console.log(`req.user: ${req.user}`);
+    console.log(`req.message: ${req.message}`);
+    next();
+})
+
 
 app.listen(3000, () => console.log("app listening on port 3000!"));
 

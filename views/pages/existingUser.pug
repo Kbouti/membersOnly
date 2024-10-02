@@ -6,4 +6,7 @@ html
         h1=title
         include ../components/header
         include ../components/errors
+        if message
+            .errorMessage #{req.message}
+
         include ../components/login

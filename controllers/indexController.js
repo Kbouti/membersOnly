@@ -61,9 +61,12 @@ const passport = require("passport");
 exports.postLogin = async (req, res, next) => {
   const middleware = passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/",
+    failureRedirect: "/existingUser",
+    // ****************************************************************************************************************
+    // How do I pass the failure message to our redirect so we can display the reason the login failed?
+    // ****************************************************************************************************************
   });
-  middleware(req, res);
+  await middleware(req, res);
   next;
 };
 
@@ -72,12 +75,15 @@ exports.getNewUser = async (req, res, next) => {
 };
 
 exports.getExistingUser = async (req, res, next) => {
-  res.render("./views/pages/existingUser", { title: "Log In" });
+  res.render("./views/pages/existingUser", {
+    title: "Log In",
+    message: req.message,
+  });
 };
 
 exports.getNewPostForm = async (req, res, next) => {
-    res.render("./views/pages/createPost", { title: "New post", user: req.user});
-}
+  res.render("./views/pages/createPost", { title: "New post", user: req.user });
+};
 
 exports.getLogout = async (req, res, next) => {
   req.logout((err) => {
@@ -138,26 +144,24 @@ exports.postNewUser = [
 exports.postNewMessage = async (req, res) => {
   console.log(`post new message route reached`);
 
-const user = req.user;
-// Need to access user correctly
+  const user = req.user;
+  // Need to access user correctly
 
-const postTitle = req.body.postTitle;
-const postMessage = req.body.postMessage;
-const timestamp = Date.now()
+  const postTitle = req.body.postTitle;
+  const postMessage = req.body.postMessage;
+  const timestamp = Date.now();
 
-// Ok so the postTimestamp is the number of milliseconds from midnight 1970......
-const date = new Date(timestamp);
+  // Ok so the postTimestamp is the number of milliseconds from midnight 1970......
+  const date = new Date(timestamp);
 
-const fullYear = date.getFullYear();
-// Ok this works... So I guess we really only need to store the timestamp in our database and we can extrapolite what we want from there
+  const fullYear = date.getFullYear();
+  // Ok this works... So I guess we really only need to store the timestamp in our database and we can extrapolite what we want from there
 
-console.log(`user: ${user}`);
-console.log(`postTitle: ${postTitle}`);
-console.log(`postMessage: ${postMessage}`);
-console.log(`timestamp: ${timestamp}`);
-console.log(`fullYear: ${fullYear}`);
-
-
+  console.log(`user: ${user}`);
+  console.log(`postTitle: ${postTitle}`);
+  console.log(`postMessage: ${postMessage}`);
+  console.log(`timestamp: ${timestamp}`);
+  console.log(`fullYear: ${fullYear}`);
 
   res.send("done");
 };
