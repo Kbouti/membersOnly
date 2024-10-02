@@ -75,7 +75,9 @@ exports.getLogout = async (req, res, next) => {
       });
 }
 
-
+// *********************************************************************************************************
+// Next we have to use bcrypt to encrypt passwords
+// *********************************************************************************************************
 exports.postNewUser = [
   validateUser,
   async (req, res) => {
