@@ -7,7 +7,7 @@ html
         include ../components/header
         include ../components/errors
         if locals.user 
-            div welcome back! #{user.firstName}
+            div welcome back #{user.first_name}!
             button 
                 a(href="/logOut") Log Out 
         else
