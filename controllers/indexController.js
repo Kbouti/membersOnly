@@ -1,5 +1,6 @@
 const userQueries = require("../database/queries/userQueries");
 const bcrypt = require("bcryptjs");
+const { timeLog } = require("console");
 
 const { body, validationResult } = require("express-validator");
 
@@ -136,5 +137,27 @@ exports.postNewUser = [
 
 exports.postNewMessage = async (req, res) => {
   console.log(`post new message route reached`);
+
+const user = req.user;
+// Need to access user correctly
+
+const postTitle = req.body.postTitle;
+const postMessage = req.body.postMessage;
+const timestamp = Date.now()
+
+// Ok so the postTimestamp is the number of milliseconds from midnight 1970......
+const date = new Date(timestamp);
+
+const fullYear = date.getFullYear();
+// Ok this works... So I guess we really only need to store the timestamp in our database and we can extrapolite what we want from there
+
+console.log(`user: ${user}`);
+console.log(`postTitle: ${postTitle}`);
+console.log(`postMessage: ${postMessage}`);
+console.log(`timestamp: ${timestamp}`);
+console.log(`fullYear: ${fullYear}`);
+
+
+
   res.send("done");
 };

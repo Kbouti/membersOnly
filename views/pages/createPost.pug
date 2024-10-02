@@ -8,3 +8,6 @@ html
         include ../components/errors
         if locals.user 
             div #{user.first_name} Create your message:
+            include ../components/newPostForm
+        else 
+            .errorMessage You are not logged in. Return home. 

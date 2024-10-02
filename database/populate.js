@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS posts (
     author int,
     foreign key (author) references users(user_id),
     title VARCHAR ( 50 ),
-    message VARCHAR ( 1000 )
+    message VARCHAR ( 1000 ),
+    timestamp TIMESTAMP
   );
 `;
 

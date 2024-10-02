@@ -1,3 +1,9 @@
 form(action="/newMessage" method="post") 
     h2 New message form
+    .formComponent 
+        label(for="title") Title:
+        input(type="text" name="postTitle")
+    .formComponent 
+        label(for="message") Message:
+        textarea(name="postMessage") 
     button(type="submit") Submit
