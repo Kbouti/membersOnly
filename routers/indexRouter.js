@@ -10,6 +10,10 @@ indexRouter.post("/logIn", indexController.postLogin);
 
 indexRouter.get("/logOut", indexController.getLogout);
 
+indexRouter.get("/newUser", indexController.getNewUser);
+
+indexRouter.get("/existingUser", indexController.getExistingUser);
+
 indexRouter.post("/newMessage", indexController.postNewMessage);
 
 module.exports = indexRouter;

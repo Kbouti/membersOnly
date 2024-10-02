@@ -67,6 +67,15 @@ exports.postLogin = async (req, res, next) => {
     next
 }
 
+
+exports.getNewUser = async (req, res, next) => {
+    res.render("./views/pages/newUser", {title: "Sign Up"});
+}
+
+exports.getExistingUser = async (req, res, next) => {
+    res.render("./views/pages/existingUser", {title: "Log In"});
+}
+
 exports.getLogout = async (req, res, next) => {
     req.logout((err) => {
         if (err) {
