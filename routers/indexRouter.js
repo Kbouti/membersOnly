@@ -14,6 +14,8 @@ indexRouter.get("/newUser", indexController.getNewUser);
 
 indexRouter.get("/existingUser", indexController.getExistingUser);
 
+indexRouter.get("/newPost", indexController.getNewPostForm);
+
 indexRouter.post("/newMessage", indexController.postNewMessage);
 
 module.exports = indexRouter;

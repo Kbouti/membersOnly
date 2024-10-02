@@ -9,6 +9,9 @@ html
         if locals.user 
             div welcome back #{user.first_name}!
 
+        include ../components/displayMessages
+
+
         if users 
             ul
                 for user in users

@@ -74,6 +74,10 @@ exports.getExistingUser = async (req, res, next) => {
   res.render("./views/pages/existingUser", { title: "Log In" });
 };
 
+exports.getNewPostForm = async (req, res, next) => {
+    res.render("./views/pages/createPost", { title: "New post", user: req.user});
+}
+
 exports.getLogout = async (req, res, next) => {
   req.logout((err) => {
     if (err) {
