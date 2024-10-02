@@ -4,7 +4,8 @@ header
     if locals.user  
         button 
             a(href="/logOut") Log Out
-    button 
-        a(href="/existingUser") Log In (existing user)
-    button 
-        a(href="/newUser") Create new user
+    else 
+        button 
+            a(href="/existingUser") Log In (existing user)
+        button 
+            a(href="/newUser") Create new user

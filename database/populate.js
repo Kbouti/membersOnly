@@ -30,8 +30,6 @@ CREATE TABLE IF NOT EXISTS posts (
     title VARCHAR ( 50 ),
     message VARCHAR ( 1000 )
   );
-
-
 `;
 
 async function main() {

@@ -45,7 +45,6 @@ const validateUser = [
     }),
 ];
 
-
 exports.getIndex = async (req, res) => {
   console.log(`getIndex controller function called`);
   const users = await userQueries.fetchUsers();
@@ -59,33 +58,30 @@ exports.getIndex = async (req, res) => {
 const passport = require("passport");
 
 exports.postLogin = async (req, res, next) => {
-    const middleware = passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/"
-      });
-      middleware(req, res);
-    next
-}
-
+  const middleware = passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/",
+  });
+  middleware(req, res);
+  next;
+};
 
 exports.getNewUser = async (req, res, next) => {
-    res.render("./views/pages/newUser", {title: "Sign Up"});
-}
+  res.render("./views/pages/newUser", { title: "Sign Up" });
+};
 
 exports.getExistingUser = async (req, res, next) => {
-    res.render("./views/pages/existingUser", {title: "Log In"});
-}
+  res.render("./views/pages/existingUser", { title: "Log In" });
+};
 
 exports.getLogout = async (req, res, next) => {
-    req.logout((err) => {
-        if (err) {
-          return next(err);
-        }
-        res.redirect("/");
-      });
-}
-
-
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
 
 exports.postNewUser = [
   validateUser,
@@ -106,30 +102,35 @@ exports.postNewUser = [
       });
     } else {
       console.log(`Submission passed validation, time to hash`);
-
       bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         if (err) {
-            return err;
-          } else {
-            try {
-                await userQueries.createUser(
-                    req.body.firstName,
-                    req.body.lastName,
-                    req.body.email,
-                    req.body.loginCode,
-                    hashedPassword,
-                  );
-              res.redirect("/");
-            } catch (err) {
-              return next(err);
-            }
+          return err;
+        } else {
+          try {
+            await userQueries.createUser(
+              req.body.firstName,
+              req.body.lastName,
+              req.body.email,
+              req.body.loginCode,
+              hashedPassword
+            );
+
+            // *****************************************************************************
+            // At this point the user had been created, but is not logged in.
+            // Can we then take the credentials given and login????
+            // *****************************************************************************
+
+            res.redirect("/");
+          } catch (err) {
+            return next(err);
           }
-        });
+        }
+      });
     }
   },
 ];
 
 exports.postNewMessage = async (req, res) => {
-    console.log(`post new message route reached`);
-    res.send("done");
-}
+  console.log(`post new message route reached`);
+  res.send("done");
+};
