@@ -1,4 +1,5 @@
 const userQueries = require("../database/queries/userQueries");
+const bcrypt = require("bcryptjs");
 
 const { body, validationResult } = require("express-validator");
 
@@ -75,9 +76,8 @@ exports.getLogout = async (req, res, next) => {
       });
 }
 
-// *********************************************************************************************************
-// Next we have to use bcrypt to encrypt passwords
-// *********************************************************************************************************
+
+
 exports.postNewUser = [
   validateUser,
   async (req, res) => {
@@ -90,21 +90,32 @@ exports.postNewUser = [
         lastName: req.body.lastName,
         email: req.body.email,
       };
-      return res.status(400).render("./views/pages/home", {
+      return res.status(400).render("./views/pages/index", {
         title: "Home",
         submission,
         errors: errors.array(),
       });
     } else {
-      console.log(`Submission passed validation`);
-      await userQueries.createUser(
-        req.body.firstName,
-        req.body.lastName,
-        req.body.email,
-        req.body.loginCode,
-        req.body.password,
-      );
-      res.redirect("/");
+      console.log(`Submission passed validation, time to hash`);
+
+      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+        if (err) {
+            return err;
+          } else {
+            try {
+                await userQueries.createUser(
+                    req.body.firstName,
+                    req.body.lastName,
+                    req.body.email,
+                    req.body.loginCode,
+                    hashedPassword,
+                  );
+              res.redirect("/");
+            } catch (err) {
+              return next(err);
+            }
+          }
+        });
     }
   },
 ];

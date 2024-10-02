@@ -43,9 +43,10 @@ passport.use(
           console.log(`email does not exist`);
           return done(null, false, { message: "Incorrect email" });
         }
-        if (user.password !== password) {
-          console.log(`incorrect password`);
-          return done(null, false, { message: "Incorrect password" });
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+            console.log(`incorrect password`);
+          return done(null, false, { message: "Incorrect password" })
         }
         console.log(`successfull login`);
         return done(null, user);
