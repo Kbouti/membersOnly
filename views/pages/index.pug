@@ -9,7 +9,8 @@ html
         if locals.user 
             div welcome back #{user.first_name}!
             button 
-                a(href="/logOut") Log Out 
+                a(href="/logOut") Log Out
+            include ../components/newPost 
         else
             include ../components/signUp
             include ../components/logIn

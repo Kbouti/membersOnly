@@ -106,3 +106,8 @@ exports.postNewUser = [
     }
   },
 ];
+
+exports.postNewMessage = async (req, res) => {
+    console.log(`post new message route reached`);
+    res.send("done");
+}
