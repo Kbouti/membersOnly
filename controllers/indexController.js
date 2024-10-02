@@ -1,4 +1,5 @@
 const userQueries = require("../database/queries/userQueries");
+const postQueries = require("../database/queries/postQueries");
 const bcrypt = require("bcryptjs");
 const { timeLog } = require("console");
 
@@ -82,7 +83,10 @@ exports.getExistingUser = async (req, res, next) => {
 };
 
 exports.getNewPostForm = async (req, res, next) => {
-  res.render("./views/pages/createPost", { title: "New post", user: req.user });
+  console.log(`getNewPostForm`);
+  console.log(`req.user: ${req.user}`);
+  const user = req.user;
+  res.render("./views/pages/createPost", { title: "New post", user });
 };
 
 exports.getLogout = async (req, res, next) => {
@@ -127,7 +131,7 @@ exports.postNewUser = [
             );
 
             // *****************************************************************************
-            // At this point the user had been created, but is not logged in.
+            // At this point the user had been created, but is not logged in. The user is required to enter their credentials again.
             // Can we then take the credentials given and login????
             // *****************************************************************************
 
@@ -145,23 +149,24 @@ exports.postNewMessage = async (req, res) => {
   console.log(`post new message route reached`);
 
   const user = req.user;
-  // Need to access user correctly
-
+  const userId = user.user_id;
   const postTitle = req.body.postTitle;
   const postMessage = req.body.postMessage;
   const timestamp = Date.now();
 
-  // Ok so the postTimestamp is the number of milliseconds from midnight 1970......
-  const date = new Date(timestamp);
-
-  const fullYear = date.getFullYear();
-  // Ok this works... So I guess we really only need to store the timestamp in our database and we can extrapolite what we want from there
-
-  console.log(`user: ${user}`);
+  console.log(`userId: ${userId}`);
   console.log(`postTitle: ${postTitle}`);
   console.log(`postMessage: ${postMessage}`);
   console.log(`timestamp: ${timestamp}`);
-  console.log(`fullYear: ${fullYear}`);
+
+  // OK at this point psql just isn't liking our timestamp format, gotta fix that in the database
+
+  // const response = await postQueries.addPost(
+  //   userId,
+  //   postTitle,
+  //   postMessage,
+  //   timestamp
+  // );
 
   res.send("done");
 };
