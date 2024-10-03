@@ -22,14 +22,14 @@ CREATE TABLE IF NOT EXISTS users (
     is_admin BOOLEAN NOT NULL
   );
 
-
 CREATE TABLE IF NOT EXISTS posts (
     post_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     author int,
     foreign key (author) references users(user_id),
     title VARCHAR ( 50 ),
     message VARCHAR ( 1000 ),
-    timestamp TIMESTAMP
+    timestamp bigint
+
   );
 `;
 

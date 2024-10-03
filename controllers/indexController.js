@@ -50,10 +50,16 @@ const validateUser = [
 exports.getIndex = async (req, res) => {
   console.log(`getIndex controller function called`);
   const users = await userQueries.fetchUsers();
+
+
+const posts = await postQueries.fetchPosts();
+
+
   res.render("./views/pages/index", {
     title: "Home",
     user: req.user,
     users,
+    posts
   });
 };
 
@@ -161,12 +167,12 @@ exports.postNewMessage = async (req, res) => {
 
   // OK at this point psql just isn't liking our timestamp format, gotta fix that in the database
 
-  // const response = await postQueries.addPost(
-  //   userId,
-  //   postTitle,
-  //   postMessage,
-  //   timestamp
-  // );
+  const response = await postQueries.addPost(
+    userId,
+    postTitle,
+    postMessage,
+    timestamp
+  );
 
-  res.send("done");
+  res.render("/");
 };

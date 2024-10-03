@@ -9,3 +9,10 @@ exports.addPost = async (user, title, message, timestamp) => {
   const response = await pool.query(sql, array);
   return;
 };
+
+
+exports.fetchPosts = async () => {
+    console.log(`query fetchPosts triggered`);
+    const {rows} = await pool.query(`select * from posts`);
+    return rows;
+}
