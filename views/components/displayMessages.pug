@@ -5,19 +5,19 @@ ul.postContainer
                 .postComponent 
                     span.postLabel Author: 
                     span.postContent #{post.first_name}
+                .postComponent 
+                    span.postLabel Date, Time posted: 
+                    - const newDate = new Date(post.timestamp * 1);
+                    - const year = newDate.getFullYear();
+                    - const month = newDate.getMonth() + 1;
+                    - const day = newDate.getDay() - 1;
+                    - const hours = newDate.getHours();
+                    - const minutes = newDate.getMinutes();
+                    - const dateTime = `${month}/${day}/${year}, ${hours}:${minutes}`
+                    span.postContent=dateTime
             .postComponent 
                 span.postLabel Title: 
                 span.postContent=post.title 
             .postComponent 
                 span.postLabel Message: 
                 span.postContent=post.message
-            .postComponent 
-                span.postLabel Posted: 
-                - const stamp = post.timestamp;
-                - const date = new Date(stamp * 1000);
-                - const year = date.getDate();
-                - const dateString = date.toLocaleDateString("en-US")
-                - const timeString = date.toLocaleTimeString("en-US")
-                span.postContent=timeString
-                //- While the format LOOKS correct the dates and times this is spitting out don't actually make any sense.....
-

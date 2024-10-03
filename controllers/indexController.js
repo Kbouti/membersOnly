@@ -160,10 +160,17 @@ exports.postNewMessage = async (req, res) => {
   const postMessage = req.body.postMessage;
   const timestamp = Date.now();
 
+const date = new Date(timestamp);
+
+
   console.log(`userId: ${userId}`);
   console.log(`postTitle: ${postTitle}`);
   console.log(`postMessage: ${postMessage}`);
   console.log(`timestamp: ${timestamp}`);
+
+  // This is correct:
+  console.log(`date: ${date}`);
+// But when we do the same thing inline in the display posts Pug template we get crazy values
 
   const response = await postQueries.addPost(
     userId,
