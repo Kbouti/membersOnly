@@ -22,6 +22,6 @@ ul.postContainer
                 span.postLabel Message: 
                 span.postContent=post.message
             if user 
-                if user.is_admin     
-                    button 
-                        a(href="/delete") Delete Post 
+                if user.is_admin  
+                    form(action="/delete" method="post")    
+                        button(type="submit") Delete

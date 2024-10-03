@@ -50,10 +50,7 @@ const validateUser = [
 exports.getIndex = async (req, res) => {
   console.log(`getIndex controller function called`);
   const users = await userQueries.fetchUsers();
-
-const posts = await postQueries.fetchPosts();
-// Need to alter this query to capture user's name
-
+  const posts = await postQueries.fetchPosts();
 
   res.render("./views/pages/index", {
     title: "Home",
@@ -89,8 +86,8 @@ exports.getExistingUser = async (req, res, next) => {
 };
 
 exports.getNewPostForm = async (req, res, next) => {
-  console.log(`getNewPostForm`);
-  console.log(`req.user: ${req.user}`);
+  console.log(`getNewPostForm triggered`);
+  // console.log(`req.user: ${req.user}`);
   const user = req.user;
   res.render("./views/pages/createPost", { title: "New post", user });
 };
@@ -160,18 +157,6 @@ exports.postNewMessage = async (req, res) => {
   const postMessage = req.body.postMessage;
   const timestamp = Date.now();
 
-const date = new Date(timestamp);
-
-
-  console.log(`userId: ${userId}`);
-  console.log(`postTitle: ${postTitle}`);
-  console.log(`postMessage: ${postMessage}`);
-  console.log(`timestamp: ${timestamp}`);
-
-  // This is correct:
-  console.log(`date: ${date}`);
-// But when we do the same thing inline in the display posts Pug template we get crazy values
-
   const response = await postQueries.addPost(
     userId,
     postTitle,
@@ -181,3 +166,14 @@ const date = new Date(timestamp);
 
   res.redirect("/");
 };
+
+
+exports.postDelete = async (req, res) => {
+  console.log(`post delete route reached`);
+
+// ******************************************************************************************************
+// Next we need to access the id of the post in question, then call a query to remove the post from the database
+// ******************************************************************************************************
+
+  res.redirect("/");
+}
