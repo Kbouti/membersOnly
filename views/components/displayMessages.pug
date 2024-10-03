@@ -11,3 +11,13 @@ ul.postContainer
             .postComponent 
                 span.postLabel Message: 
                 span.postContent=post.message
+            .postComponent 
+                span.postLabel Posted: 
+                - const stamp = post.timestamp;
+                - const date = new Date(stamp * 1000);
+                - const year = date.getDate();
+                - const dateString = date.toLocaleDateString("en-US")
+                - const timeString = date.toLocaleTimeString("en-US")
+                span.postContent=timeString
+                //- While the format LOOKS correct the dates and times this is spitting out don't actually make any sense.....
+
