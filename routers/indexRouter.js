@@ -18,5 +18,8 @@ indexRouter.get("/newPost", indexController.getNewPostForm);
 
 indexRouter.post("/newMessage", indexController.postNewMessage);
 
+
+// Next: need delete route
+
 module.exports = indexRouter;
 
