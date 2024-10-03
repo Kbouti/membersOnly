@@ -1,7 +1,7 @@
-if locals.user
-    button
-        a(href="/newPost") New Post 
-ul
-for post in posts    
-    li 
-        .post=post.title
+ul.postContainer
+    for post in posts    
+        li.post
+            div=post.title
+            div=post.message
+
+            //- We need to access the author's name to display it, currently we just have the authors id number

@@ -165,8 +165,6 @@ exports.postNewMessage = async (req, res) => {
   console.log(`postMessage: ${postMessage}`);
   console.log(`timestamp: ${timestamp}`);
 
-  // OK at this point psql just isn't liking our timestamp format, gotta fix that in the database
-
   const response = await postQueries.addPost(
     userId,
     postTitle,
@@ -174,5 +172,5 @@ exports.postNewMessage = async (req, res) => {
     timestamp
   );
 
-  res.render("/");
+  res.redirect("/");
 };

@@ -25,3 +25,15 @@ form {
   border-radius: 10px;
   padding: 1rem;
 }
+
+.postContainer {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  list-style:none;
+  align-items: center;
+}
+
+.postContainer ul {
+}
