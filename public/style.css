@@ -31,7 +31,7 @@ form {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  list-style:none;
+  list-style: none;
   align-items: center;
   margin: 0;
   padding: 1rem;
@@ -41,5 +41,9 @@ form {
 .post {
   border: 2px solid black;
   width: 100%;
-  margin: .2rem;
+  margin: 0.2rem;
+}
+
+.postLabel {
+  color: red;
 }

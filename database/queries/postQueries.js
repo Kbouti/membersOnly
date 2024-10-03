@@ -13,6 +13,7 @@ exports.addPost = async (user, title, message, timestamp) => {
 
 exports.fetchPosts = async () => {
     console.log(`query fetchPosts triggered`);
-    const {rows} = await pool.query(`select * from posts`);
+    const sql = "select posts.title, posts.message, posts.timestamp, users.first_name from posts inner join users on posts.author = users.user_id"
+    const {rows} = await pool.query(sql);
     return rows;
 }

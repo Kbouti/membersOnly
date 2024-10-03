@@ -50,9 +50,9 @@ const validateUser = [
 exports.getIndex = async (req, res) => {
   console.log(`getIndex controller function called`);
   const users = await userQueries.fetchUsers();
-// Need to alter this query to capture user's name
 
 const posts = await postQueries.fetchPosts();
+// Need to alter this query to capture user's name
 
 
   res.render("./views/pages/index", {
