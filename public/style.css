@@ -33,7 +33,13 @@ form {
   border-radius: 10px;
   list-style:none;
   align-items: center;
+  margin: 0;
+  padding: 1rem;
+  width: 80%;
 }
 
-.postContainer ul {
+.post {
+  border: 2px solid black;
+  width: 100%;
+  margin: .2rem;
 }
