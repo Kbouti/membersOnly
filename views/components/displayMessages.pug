@@ -24,6 +24,7 @@ ul.postContainer
                 span.postContent=post.message
             if user
                 if user.is_admin
-                    .postComponent   
-                        form.deleteForm(action="/delete" method="post")    
+                    .postComponent
+                        - const deleteRoute = `/delete/${post.post_id}`  
+                        form.deleteForm(action=deleteRoute method="post")    
                             button(type="submit") Delete
