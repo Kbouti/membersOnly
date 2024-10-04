@@ -2,26 +2,28 @@ ul.postContainer
     for post in posts    
         li.post
             if user
-                .postComponent 
-                    span.postLabel Author: 
-                    span.postContent #{post.first_name}
-                .postComponent 
-                    span.postLabel Date, Time posted: 
-                    - const newDate = new Date(post.timestamp * 1);
-                    - const year = newDate.getFullYear();
-                    - const month = newDate.getMonth() + 1;
-                    - const day = newDate.getDay() - 1;
-                    - const hours = newDate.getHours();
-                    - const minutes = newDate.getMinutes();
-                    - const dateTime = `${month}/${day}/${year}, ${hours}:${minutes}`
-                    span.postContent=dateTime
+                if user.is_member
+                    .postComponent 
+                        span.postLabel Author: 
+                        span.postContent #{post.first_name}
+                    .postComponent 
+                        span.postLabel Date, Time posted: 
+                        - const newDate = new Date(post.timestamp * 1);
+                        - const year = newDate.getFullYear();
+                        - const month = newDate.getMonth() + 1;
+                        - const day = newDate.getDay() - 1;
+                        - const hours = newDate.getHours();
+                        - const minutes = newDate.getMinutes();
+                        - const dateTime = `${month}/${day}/${year}, ${hours}:${minutes}`
+                        span.postContent=dateTime
             .postComponent 
                 span.postLabel Title: 
                 span.postContent=post.title 
             .postComponent 
                 span.postLabel Message: 
                 span.postContent=post.message
-            if user 
-                if user.is_admin  
-                    form(action="/delete" method="post")    
-                        button(type="submit") Delete
+            if user
+                if user.is_admin
+                    .postComponent   
+                        form.deleteForm(action="/delete" method="post")    
+                            button(type="submit") Delete
