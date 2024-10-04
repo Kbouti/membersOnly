@@ -8,6 +8,7 @@ let user;
 let database;
 let password;
 
+console.log(`accessing env variables for mode: ${mode}`);
 
 if (mode == "development") {
   host = process.env.HOST;
@@ -23,6 +24,7 @@ else if (mode == "deployment") {
   password = process.env.PGPASSWORD;
 }
 
+console.log(`Accessed variables, initiating pool`);
 
 
 module.exports = new Pool({
