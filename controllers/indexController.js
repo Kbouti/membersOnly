@@ -169,11 +169,7 @@ exports.postNewMessage = async (req, res) => {
 
 
 exports.postDelete = async (req, res) => {
-  console.log(`post delete route reached`);
-
-// ******************************************************************************************************
-// Next we need to access the id of the post in question, then call a query to remove the post from the database
-// ******************************************************************************************************
-
+  console.log(`post delete route reached for post id: ${req.params.post_id}`);
+  const response = await postQueries.deletePost(req.params.post_id);
   res.redirect("/");
 }

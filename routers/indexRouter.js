@@ -18,7 +18,7 @@ indexRouter.get("/newPost", indexController.getNewPostForm);
 
 indexRouter.post("/newMessage", indexController.postNewMessage);
 
-indexRouter.post("/delete", indexController.postDelete)
+indexRouter.post("/delete/:post_id", indexController.postDelete)
 
 module.exports = indexRouter;
 

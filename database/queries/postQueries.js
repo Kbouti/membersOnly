@@ -17,3 +17,11 @@ exports.fetchPosts = async () => {
     const {rows} = await pool.query(sql);
     return rows;
 }
+
+exports.deletePost = async (post_id) => {
+    console.log(`Query deletePost called for post_id ${post_id}`);
+
+    const sql = `delete from posts where post_id = ${post_id}`;
+    const response = await pool.query(sql);
+    return response;
+}
