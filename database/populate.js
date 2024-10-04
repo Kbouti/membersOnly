@@ -3,10 +3,29 @@ const { Client } = require("pg");
 require("dotenv").config();
 console.log(`populate database file running`);
 
-const database = process.env.DATABASE;
-const user = process.env.USER;
-const password = process.env.PASSWORD;
-const host = process.env.HOST;
+const mode = process.env.MODE;
+
+let host;
+let user;
+let database;
+let password;
+
+console.log(`accessing env variables for mode: ${mode}`);
+
+if (mode == "development") {
+  host = process.env.HOST;
+  user = process.env.USER;
+  database = process.env.DATABASE;
+  password = process.env.PASSWORD
+}
+
+else if (mode == "deployment") {
+  host = process.env.PGHOST;
+  user = process.env.PGUSER;
+  database = process.env.PGDATABASE;
+  password = process.env.PGPASSWORD;
+}
+
 const connectionString = `postgresql://${user}:${password}@${host}:5432/${database}`;
 
 
