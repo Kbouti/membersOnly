@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "node --watch app.js",
+    "deploy": "npm run populate && node app.js",
     "dropTables": "node database/dropTables",
     "populate": "node database/populate",
     "reset": "node database/dropTables && node database/populate && npm run start"
