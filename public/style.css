@@ -17,6 +17,10 @@ body {
   background-color: rgb(208, 209, 210);
 }
 
+header {
+  margin-bottom: 1rem;
+}
+
 form {
   background-color: white;
   display: flex;
@@ -46,13 +50,16 @@ form {
 }
 
 .post {
-  border: 2px solid black;
+  border: 3px solid rgb(107, 209, 250);
+  background-color: white;
+  border-radius: 10px;
   width: 100%;
-  margin: 0.2rem;
+  margin: .2rem;
+  padding: .2rem;
 }
 
 .postLabel {
-  color: red;
+  color: rgb(29, 111, 144);
 }
 
 .deleteForm {
