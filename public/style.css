@@ -19,9 +19,11 @@ body {
 
 header {
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
-form {
+.styledForm {
   background-color: white;
   display: flex;
   flex-direction: column;

@@ -1,13 +1,13 @@
-header 
-    button 
-        a(href="/") Home
-    if locals.user  
-        button
-            a(href="/newPost") New Post 
-        button 
-            a(href="/logOut") Log Out
+header
+    form(action="/" method="get")
+        button(type="submit") Home
+    if locals.user
+        form(action="/newPost" method="get")
+            button(type="submit") New Post
+        form(action="/logOut" method="get")
+            button(type="submit") Log Out
     else 
-        button 
-            a(href="/existingUser") Log In (existing user)
-        button 
-            a(href="/newUser") Create new user
+        form(action="/existingUser" method="get")
+            button(type="submit") Log In (existing user)
+        form(action="/newUser" method="get")
+            button(type="submit") Create new user
