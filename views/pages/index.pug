@@ -8,4 +8,5 @@ html
         include ../components/errors
         if locals.user 
             h2 Welcome Back #{user.first_name}!
-        include ../components/displayMessages
+        if !submission
+            include ../components/displayMessages
