@@ -15,7 +15,8 @@ ul.postContainer
                         - const month = newDate.getMonth() + 1;
                         - const day = newDate.getDay() - 1;
                         - const hours = newDate.getHours();
-                        - const minutes = newDate.getMinutes();
+                        - let minutes = newDate.getMinutes();
+                        - if (minutes < 10) {minutes = `0` + minutes}
                         - const dateTime = `${month}/${day}/${year}, ${hours}:${minutes}`
                         span.postContent=dateTime
             .postComponent 
