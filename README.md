@@ -8,7 +8,7 @@ Technologies used:
 -Javascript
 -HTML/CSS
 
-deployed on Railway:
+Deployed on Railway:
 https://membersonly-production-e019.up.railway.app/
 
 Project guidelines:
