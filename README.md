@@ -1,12 +1,15 @@
-Members Only project for Odin
+The purpose of this message board project was to learn authentication and password encryption. The app provides users with varying levels of permission based on their member status. When no user is logged in only the post's content and title is visible. In order to post on the message board a user must create an account. In order to view the author and timestamp of posts, the user must have member status. Member status can be gained by using the passcode "bikes" when creating an account. Admin status is gained by using the passcode "moreBikes" during profile creation, and provides the user with the ability to delete posts. 
 
-https://www.theodinproject.com/lessons/node-path-nodejs-members-only
-
-Use node express, psql, and passport to make a message board app that allows users to post messages that anyone can see, but only members can view the author. When creating a user profile users are asked for a login code. If you have no login code, you can create an account and view messages posted by others. If you have a member-level login code you will be able to post messages and read the authors of other messages. With admin level login code user can delete messages. Login codes are set at the top of database/queries/userQueries.
+Technologies used: 
+-Bcrpytjs
+-Passport.js
+-Node.js
+-Pug
+-Javascript
+-HTML/CSS
 
 deployed on Railway:
 https://membersonly-production-e019.up.railway.app/
 
-
-dependencies install: 
-npm install express express-session pg passport passport-local pug dotenv
+Project guidelines:
+https://www.theodinproject.com/lessons/node-path-nodejs-members-only
